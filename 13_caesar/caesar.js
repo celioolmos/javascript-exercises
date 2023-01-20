@@ -1,39 +1,34 @@
 const caesar = function(str, shift) {
 
-    var varUpdatedString = ""
+let encrpted = ""
+let newVal =""
 
-// convert string to array of unicode
-const strToUni = function(string) {
-        var endArray = []
-        for (let i = 0; i < str.length; i++) {
-        var theUnicode = string.charCodeAt(i) ;
-        endArray.push(theUnicode)  
-    }
-    return endArray
+for (let i = 0 ; i < str.length ; i++) {
+    let currentLetterCode = str.charCodeAt(i);
+ 
+    if (currentLetterCode > 64 && currentLetterCode < 91 || currentLetterCode > 96 && currentLetterCode <123) {
+        let updatedLetterCode = currentLetterCode + shift;
+         if(updatedLetterCode > 90 && updatedLetterCode < 97){
+            updatedLetterCode = (updatedLetterCode -25) -1;
+
+         } if(updatedLetterCode < 65 && updatedLetterCode < 97) {
+            updatedLetterCode = (updatedLetterCode +25) + 1;}
+            
+            newVal = String.fromCharCode(updatedLetterCode);
+          
+        }
+    else 
+            newVal = String.fromCharCode(currentLetterCode); 
+        encrpted += newVal
 }
- var unicodeArray = strToUni(str); 
-    
-
-       
-
-
-
-// incriment each letter by designated "shift" requirement
-shiftedUnicodeArray = unicodeArray.map(function(val){return val + shift})
-
-
-//return encrypted message back
-const regroupString = function(array){
-      varUpdatedString = ""
-    for (let i = 0; i <= shiftedUnicodeArray.length; i++) {
-stringPart = String.fromCharCode(shiftedUnicodeArray[i])
- varUpdatedString = varUpdatedString + stringPart;}
- return varUpdatedString;
-}
-
-
-regroupString(shiftedUnicodeArray)
-return varUpdatedString
+    return encrpted;
 }
 // Do not edit below this line
 module.exports = caesar;
+
+
+
+
+
+
+
